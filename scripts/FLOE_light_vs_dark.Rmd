@@ -279,6 +279,51 @@ DEgene_LD_compare_all <- topTags(compare_lrt, n = Inf, p.value = 1)$table
 write.csv(DEgene_LD_compare_all,"../output/DEgenes_WP_compare_all.csv")
 ```
 
+### conditionLight
+
+```{r finding differentially expressed genes again: conditionLight}
+compare_lrt1 <- glmLRT(fit, coef = "conditionLight")
+```
+
+```{r view the differentially expressed genes again: conditionLight}
+topTags(compare_lrt1)
+```
+
+```{r summarise number of differentially expressed genes again: conditionLight}
+#summary(decideTestsDGE(compare_lrt, p.value=0.01))
+summary(decideTests(compare_lrt1, p.value=0.01))
+```
+
+### conditionLight and all light interactions
+
+```{r finding differentially expressed genes again: conditionLight and all light interactions}
+compare_lrt2 <- glmLRT(fit, coef = colnames(design[, c(5:8)]))
+```
+
+```{r view the differentially expressed genes again: conditionLight and all light interactions}
+topTags(compare_lrt2)
+```
+
+```{r summarise number of differentially expressed genes again: conditionLight and all light interactions}
+#summary(decideTestsDGE(compare_lrt, p.value=0.01))
+summary(decideTests(compare_lrt2, p.value=0.01))
+```
+
+### all light interactions
+
+```{r finding differentially expressed genes again: all light interactions}
+compare_lrt3 <- glmLRT(fit, coef = colnames(design[, c(6:8)]))
+```
+
+```{r view the differentially expressed genes again: all light interactions}
+topTags(compare_lrt3)
+```
+
+```{r summarise number of differentially expressed genes again: all light interactions}
+#summary(decideTestsDGE(compare_lrt, p.value=0.01))
+summary(decideTests(compare_lrt3, p.value=0.01))
+```
+
 ## Box Plot Function
 
 ```{r box plot function}
